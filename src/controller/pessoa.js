@@ -2,9 +2,9 @@ import ServicePessoa from '../service/pessoa.js'
 
 class ControllerPessoa {
 
-    Buscar(req, res) {
+    async Buscar(req, res) {
         try {
-            const nomes = ServicePessoa.Buscar()
+            const nomes = await ServicePessoa.Buscar()
 
             res.send({ nomes })
         } catch (e) {
@@ -23,35 +23,35 @@ class ControllerPessoa {
         }
     }
 
-    Criar(req, res) {
+    async Criar(req, res) {
         try {
             const nome = req.body.nome
             const idade = req.body.idade
-            ServicePessoa.Criar(nome, idade)
+            await ServicePessoa.Criar(nome, idade)
 
             res.send({ message: "Criado com sucesso!" })
         } catch (error) {
             res.send({ message: error.message })
         }
     }
-    
-    Alterar(req, res) {
+
+    async Alterar(req, res) {
         try {
             const id = req.params.id
             const nome = req.body.nome
-            ServicePessoa.Alterar(id, nome)
+            await ServicePessoa.Alterar(id, nome)
 
             res.send({ message: "Alterado com sucesso!" })
         } catch (error) {
             res.send({ message: error.message })
         }
     }
-    
-    Deletar(req, res) {
+
+    async Deletar(req, res) {
         try {
             const id = req.params.id
-            ServicePessoa.Deletar(id)
-            
+            await ServicePessoa.Deletar(id)
+
             res.send({ message: "Deletado com sucesso!" })
         } catch (error) {
             res.send({ message: error.message })
