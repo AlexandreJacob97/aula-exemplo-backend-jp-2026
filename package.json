@@ -15,8 +15,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch index.js",
-    "test": "jest"
+    "dev": "node --env-file-if-exists=.env --watch index.js",
+    "start": "node --env-file-if-exists=.env index.js",
+    "test": "node --test"
   },
   "dependencies": {
     "express": "^5.2.1",

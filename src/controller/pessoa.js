@@ -12,10 +12,10 @@ class ControllerPessoa {
         }
     }
 
-    BuscarUm(req, res) {
+    async BuscarUm(req, res) {
         try {
             const id = req.params.id
-            const nome = ServicePessoa.BuscarUm(id)
+            const nome = await ServicePessoa.BuscarUm(id)
 
             res.send({ nome })
         } catch (error) {

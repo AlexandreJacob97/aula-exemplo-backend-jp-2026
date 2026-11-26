@@ -6,12 +6,16 @@ class ServicePessoa {
         return Pessoa.findAll()
     }
     
-    BuscarUm(id) {
+    async BuscarUm(id) {
         if(!id || isNaN(id)) {
             throw new Error("Favor informar somente números")
         }
 
-        return Pessoa.BuscarUm(id)
+        const pessoa = await Pessoa.findByPk(id)
+        if (!pessoa) {
+            throw new Error("Pessoa não encontrada")
+        }
+        return pessoa
     }
     
     async Criar(nome, idade) {
@@ -34,8 +38,6 @@ class ServicePessoa {
         pessoaAlterar.nome = nome
         
         await pessoaAlterar.save()
-
-        Pessoa.Alterar(id, nome)
     }
 
     async Deletar(id) {
